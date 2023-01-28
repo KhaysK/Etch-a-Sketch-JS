@@ -1,0 +1,45 @@
+/*
+Color palette
+Black - #453c38 - 
+Light - #f4efdb - Ivory
+Gray - #a8a8a9 - Pewter
+Peach - #e6b794 - Scallop Seashell
+*/
+
+body{
+    background-color: #f4efdb;
+}
+
+header{
+    color: #453c38;
+    font-size: 3rem;
+    font-weight: bold;
+    font-family: "Roboto", sans-serif;
+    display: flex;
+    justify-content: center;
+    margin: 36px 0;
+}
+
+.settings-container{
+    max-width: 20%;
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.btn{
+    width: 60%;
+    height: 10%;
+    color: #453c38;
+    font-family: "Roboto", sans-serif;
+    transform: scale(1);
+    transition: all 0.3s ease;
+}
+
+.btn:hover{
+    transform: scale(1.1); 
+    transform: scale(1); 
+}
