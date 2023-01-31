@@ -11,10 +11,10 @@
     <main>
         <div class="settings-container">
             <input type="color" class="color-panel" id="head" name="head" value="#e66465">
-            <button class="btn active-btn">Color Mode</button>
-            <button class="btn">Rainbow Mode</button>
-            <button class="btn">Eraser</button>
-            <button class="btn">Clear</button>
+            <button class="btn active-btn" onclick="btnHandler('color');">Color Mode</button>
+            <button class="btn" onclick="btnHandler('rainbow');">Rainbow Mode</button>
+            <button class="btn" onclick="btnHandler('eraser');">Eraser</button>
+            <button class="btn" onclick="btnHandler('clear');">Clear</button>
             
             <div class="slider-container">
                 <input type="range" min="16" max="30" value="16" class="slider" id="myRange" onchange="changeGrid(this.value);">
