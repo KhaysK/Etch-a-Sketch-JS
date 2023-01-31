@@ -9,6 +9,11 @@ function initGrid(canvas, size){
         for (let i = 0; i < size; i++){
             let cell = document.createElement("div");
             cell.classList.add("cell");
+
+            cell.addEventListener('click', function(){
+                this.style.backgroundColor = chosenColor;
+            });
+
             row.appendChild(cell)
         }
         canvas.appendChild(row);
@@ -63,6 +68,13 @@ function btnHandler(btnType){
             break;
     }
 }
+
+const palette = document.querySelector(".color-panel");
+let chosenColor = palette.value;
+
+palette.addEventListener('input', function(){
+    chosenColor = this.value;
+});
 
 const gridSize = document.querySelector(".slider");
 gridSize.value = gridSize.defaultValue;
