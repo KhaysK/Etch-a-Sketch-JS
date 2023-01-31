@@ -3,18 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="./style.css">
-    <script src="./script.js"></script>
+    <script src="./script.js" defer></script> 
     <title>Etch-a-Sketch</title>
 </head>
 <body>  
     <header>Etch-a-sketch</header>
     <main>
         <div class="settings-container">
-            <div class="color-panel"></div>
-            <button class="btn">Color Mode</button>
+            <input type="color" class="color-panel" id="head" name="head" value="#e66465">
+            <button class="btn active-btn">Color Mode</button>
             <button class="btn">Rainbow Mode</button>
             <button class="btn">Eraser</button>
             <button class="btn">Clear</button>
+            
+            <div class="slider-container">
+                <input type="range" min="16" max="30" value="16" class="slider" id="myRange" onchange="changeGrid(this.value);">
+            </div>
+            <div class="size-text"></div>
         </div>
         <div class="canvas-container"></div>
     </main>

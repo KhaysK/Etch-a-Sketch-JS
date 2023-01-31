@@ -5,6 +5,11 @@ Light - #f4efdb - Ivory
 Gray - #a8a8a9 - Pewter
 Peach - #e6b794 - Scallop Seashell
 */
+main {
+    display: flex;
+    justify-content: center;
+    gap: 6%;
+}
 
 body{
     background-color: #f4efdb;
@@ -12,7 +17,7 @@ body{
 
 header{
     color: #453c38;
-    font-size: 3rem;
+    font-size: 5rem;
     font-weight: bold;
     font-family: "Roboto", sans-serif;
     display: flex;
@@ -21,7 +26,8 @@ header{
 }
 
 .settings-container{
-    max-width: 20%;
+    margin-left: -10%;
+    width: 20%;
     height: 50vh;
     display: flex;
     flex-direction: column;
@@ -34,12 +40,78 @@ header{
     width: 60%;
     height: 10%;
     color: #453c38;
+    background-color: #f4efdb;
     font-family: "Roboto", sans-serif;
+    font-weight: bold;
+    font-size: 1rem;
+    border: none;
+    border: 1px solid #453c38;
+    border-radius: 7px;
     transform: scale(1);
     transition: all 0.3s ease;
 }
 
 .btn:hover{
-    transform: scale(1.1); 
-    transform: scale(1); 
+    transform: scale(1.05);
+    filter: brightness(90%);
+}
+
+.slider-container {
+    width: 65%;
+}
+
+
+.slider{
+    width: 100%;
+}
+
+.active-btn {
+    background-color: #453c38;
+    color: #f4efdb;
+}
+
+.canvas-container{
+    background-color: #fff;
+    width: 35vw;
+    height: 35vw;
+    -webkit-box-shadow: -4px 4px 10px 0px rgba(34, 60, 80, 0.15);
+    -moz-box-shadow: -4px 4px 10px 0px rgba(34, 60, 80, 0.15);
+    box-shadow: -4px 4px 10px 0px rgba(34, 60, 80, 0.15);
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.cell {
+    flex: 1;
+    border: 1px solid #453c38;
+}
+.row {
+    display: flex;
+    width: 100%;
+}
+
+.size-text{
+    width: 60%;
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.color-panel{
+    background-color: transparent;
+    color: #453c38;
+    border: none;
+    width: 40%;
+    height: 30%;
+    transform: scale(1);
+    transition: all .5s ease;
+}
+
+.color-panel:hover{
+    transform: scale(1.1);
+}
+
+.color-panel:active {
+    transform: scale(0.9);
 }
