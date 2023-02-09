@@ -10,6 +10,9 @@ function initGrid(canvas, size){
             let cell = document.createElement("div");
             cell.classList.add("cell");
 
+            cell.style.border = "1px solid #453c38";
+            cell.style.flex = "1"; 
+
             cell.addEventListener('click', function(){
                 if (isRandom)
                     this.style.backgroundColor = getRandomColor();
@@ -17,11 +20,7 @@ function initGrid(canvas, size){
                     this.style.backgroundColor = chosenColor;
                 }
             });
-
-            cell.addEventListener("dblclick", function(event) {
-                
-            });
-
+            
             row.appendChild(cell)
         }
         canvas.appendChild(row);
@@ -82,10 +81,23 @@ function clearGrid(){
     }
 }
 
+function gridBorderSwitcher(){
+    const cells = document.getElementsByClassName("cell");
+    for (let i = 0; i < cells.length; i++) {
+        if (cells[i].style.borderWidth == "1px"){
+            cells[i].style.borderWidth = "0px";
+        }
+        else {
+            cells[i].style.borderWidth = "1px";
+        }
+            
+    }
+}
+
 function btnHandler(btnType){
     const activeBtn = document.querySelector(".active-btn");
 
-    if(btnType != "clear")
+    if(btnType != "clear" && btnType != "grid")
         activeBtn.classList.remove("active-btn");
 
     switch(btnType){
@@ -100,6 +112,15 @@ function btnHandler(btnType){
             break;
         case 'clear':
             clearGrid();
+            break;
+        case 'darker':
+            
+            break;
+        case 'lighter':
+            
+            break;
+        case 'grid':
+            gridBorderSwitcher();
             break;
     }
 }
