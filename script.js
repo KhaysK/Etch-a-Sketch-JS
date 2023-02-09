@@ -13,12 +13,14 @@ function initGrid(canvas, size){
             cell.addEventListener('click', function(){
                 if (isRandom)
                     this.style.backgroundColor = getRandomColor();
-                else this.style.backgroundColor = chosenColor;
+                else {
+                    this.style.backgroundColor = chosenColor;
+                }
             });
 
             cell.addEventListener("dblclick", function(event) {
                 
-              });
+            });
 
             row.appendChild(cell)
         }
@@ -35,6 +37,19 @@ function getRandomColor() {
     return color;
 }
 
+function darkenBackground(element, darkenPercent) {
+    let originalColor = window.getComputedStyle(element).backgroundColor;
+    let colorComponents = originalColor.match(/\d+/g);
+    let r = colorComponents[0];
+    let g = colorComponents[1];
+    let b = colorComponents[2];
+    r = Math.floor(r * (1 - darkenPercent));
+    g = Math.floor(g * (1 - darkenPercent));
+    b = Math.floor(b * (1 - darkenPercent));
+    let newColor = "rgb(" + r + "," + g + "," + b + ")";
+    element.style.backgroundColor = newColor;
+  }
+
 function changeGrid(size){
     const canvas = document.querySelector(".canvas-container");
     canvas.textContent = '';
@@ -49,7 +64,7 @@ function colorMode(){
 }
 
 function rainbowMode(){
-    const btn = document.querySelectorAll(".btn")[1];
+    const btn = document.querySelectorAll(".btn")[3];
     btn.classList.add("active-btn");
     isRandom = true;
 }

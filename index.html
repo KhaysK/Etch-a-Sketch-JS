@@ -12,9 +12,25 @@
         <div class="settings-container">
             <input type="color" class="color-panel" id="head" name="head" value="#e66465">
             <button class="btn active-btn" onclick="btnHandler('color');">Color Mode</button>
+            <div class="container">
+                <button class="btn" onclick="">Lighter</button>
+                <button class="btn" onclick="">Darker</button>
+            </div>
             <button class="btn" onclick="btnHandler('rainbow');">Rainbow Mode</button>
-            <button class="btn" onclick="btnHandler('eraser');">Eraser</button>
             <button class="btn" onclick="btnHandler('clear');">Clear</button>
+            <button class="btn" onclick="">Grid</button>
+            <div class="eraser">
+                <span>Eraser</span>
+                <button class="btn" onclick="btnHandler('eraser');">
+                    <img src="./materials/square.png" alt="one cell" width="70%">
+                </button>
+                <button class="btn" onclick="btnHandler('eraser');">
+                    <img src="./materials/grid.png" alt="nine cells" width="70%">
+                </button>
+                <button class="btn" onclick="btnHandler('eraser');">
+                    <img src="./materials/grid-big.png" alt="twenty five cells" width="70%">
+                </button>
+            </div>  
             
             <div class="slider-container">
                 <input type="range" min="16" max="30" value="16" class="slider" id="myRange" onchange="changeGrid(this.value);">
