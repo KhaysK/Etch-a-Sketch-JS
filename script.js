@@ -11,8 +11,14 @@ function initGrid(canvas, size){
             cell.classList.add("cell");
 
             cell.addEventListener('click', function(){
-                this.style.backgroundColor = chosenColor;
+                if (isRandom)
+                    this.style.backgroundColor = getRandomColor();
+                else this.style.backgroundColor = chosenColor;
             });
+
+            cell.addEventListener("dblclick", function(event) {
+                
+              });
 
             row.appendChild(cell)
         }
@@ -20,34 +26,48 @@ function initGrid(canvas, size){
     }
 }
 
+function getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+
 function changeGrid(size){
     const canvas = document.querySelector(".canvas-container");
     canvas.textContent = '';
-    initGrid(canvas, size)
+    initGrid(canvas, size);
 }
 
 function colorMode(){
     const btn = document.querySelectorAll(".btn")[0];
     btn.classList.add("active-btn");
+    chosenColor = palette.value;    
+    isRandom = false;
 }
 
 function rainbowMode(){
     const btn = document.querySelectorAll(".btn")[1];
     btn.classList.add("active-btn");
+    isRandom = true;
 }
 
 function eraserMode(){
     const btn = document.querySelectorAll(".btn")[2];
     btn.classList.add("active-btn");
+    chosenColor = "white";
 }
 
 function clearGrid(){
-    const btn = document.querySelectorAll(".btn")[3];
-    
+    const cells = document.getElementsByClassName("cell");
+    for (let i = 0; i < cells.length; i++) {
+        cells[i].style.backgroundColor = "white";
+    }
 }
 
 function btnHandler(btnType){
-    console.log("test");
     const activeBtn = document.querySelector(".active-btn");
 
     if(btnType != "clear")
@@ -71,6 +91,7 @@ function btnHandler(btnType){
 
 const palette = document.querySelector(".color-panel");
 let chosenColor = palette.value;
+let isRandom = false;
 
 palette.addEventListener('input', function(){
     chosenColor = this.value;
