@@ -14,13 +14,19 @@ function initGrid(canvas, size){
             cell.style.flex = "1"; 
 
             cell.addEventListener('click', function(){
-                if (isRandom)
+                if(isDarker){
+                    changeBackgroundShade(this, -0.10);
+                }
+                else if (isLighter){
+                    changeBackgroundShade(this, 0.10);
+                }
+                else if (isRandom && !isEraser)
                     this.style.backgroundColor = getRandomColor();
                 else {
                     this.style.backgroundColor = chosenColor;
                 }
             });
-            
+
             row.appendChild(cell)
         }
         canvas.appendChild(row);
@@ -36,15 +42,15 @@ function getRandomColor() {
     return color;
 }
 
-function darkenBackground(element, darkenPercent) {
+function changeBackgroundShade(element, darkenPercent) {
     let originalColor = window.getComputedStyle(element).backgroundColor;
     let colorComponents = originalColor.match(/\d+/g);
     let r = colorComponents[0];
     let g = colorComponents[1];
     let b = colorComponents[2];
-    r = Math.floor(r * (1 - darkenPercent));
-    g = Math.floor(g * (1 - darkenPercent));
-    b = Math.floor(b * (1 - darkenPercent));
+    r = Math.floor(r * (1 + darkenPercent));
+    g = Math.floor(g * (1 + darkenPercent));
+    b = Math.floor(b * (1 + darkenPercent));
     let newColor = "rgb(" + r + "," + g + "," + b + ")";
     element.style.backgroundColor = newColor;
   }
@@ -56,22 +62,22 @@ function changeGrid(size){
 }
 
 function colorMode(){
-    const btn = document.querySelectorAll(".btn")[0];
-    btn.classList.add("active-btn");
+    btn[0].classList.add("active-btn");
     chosenColor = palette.value;    
-    isRandom = false;
+    resetBool();
 }
 
 function rainbowMode(){
-    const btn = document.querySelectorAll(".btn")[3];
-    btn.classList.add("active-btn");
+    btn[3].classList.add("active-btn");
+    resetBool();
     isRandom = true;
 }
 
-function eraserMode(){
-    const btn = document.querySelectorAll(".btn")[2];
-    btn.classList.add("active-btn");
+function eraserSmallMode(){
+    btn[6].classList.add("active-btn");
     chosenColor = "white";
+    resetBool();
+    isEraser = true;
 }
 
 function clearGrid(){
@@ -93,6 +99,24 @@ function gridBorderSwitcher(){
             
     }
 }
+function resetBool(){
+    isRandom = false;
+    isEraser = false;
+    isDarker = false;
+    isLighter = false;
+}
+
+function darkerBackgroundColor(){
+    btn[2].classList.add("active-btn");
+    resetBool();
+    isDarker = true;
+}
+
+function lighterBackgroundColor(){
+    btn[1].classList.add("active-btn");
+    resetBool();
+    isLighter = true;
+}
 
 function btnHandler(btnType){
     const activeBtn = document.querySelector(".active-btn");
@@ -107,17 +131,23 @@ function btnHandler(btnType){
         case 'rainbow':
             rainbowMode();
             break;
-        case 'eraser':
-            eraserMode();
+        case 'eraserSmall':
+            eraserSmallMode();
+            break;
+        case 'eraserMedium':
+            eraserMediumMode();
+            break;
+        case 'eraserBig':
+            eraserBigMode();
             break;
         case 'clear':
             clearGrid();
             break;
         case 'darker':
-            
+            darkerBackgroundColor();
             break;
         case 'lighter':
-            
+            lighterBackgroundColor();
             break;
         case 'grid':
             gridBorderSwitcher();
@@ -128,6 +158,10 @@ function btnHandler(btnType){
 const palette = document.querySelector(".color-panel");
 let chosenColor = palette.value;
 let isRandom = false;
+let isEraser = false;
+let isDarker = false;
+let isLighter = false;
+const btn = document.querySelectorAll(".btn");
 
 palette.addEventListener('input', function(){
     chosenColor = this.value;
