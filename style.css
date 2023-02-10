@@ -144,3 +144,7 @@ header{
 .color-panel:active {
     transform: scale(0.9);
 }
+
+.active-btn img{ 
+    filter: brightness(3.6);
+}
